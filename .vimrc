@@ -57,55 +57,53 @@ let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 let g:android_sdk_path = '~/android-studio/sdk/'
 "let g:android_sdk_tags = '~/android-studio/sdk/tags/tags'
 "set tags=/home/andrea/.vim/tags/tags
-set tags=/home/andrea/vim/src/vimtags
-set tags+=/home/andrea/.vim/tags/st1
+colorscheme badwolf
+filetype indent on
 filetype on
 filetype plugin on
-filetype indent on
-syntax enable
-colorscheme badwolf
-set hlsearch
-map <C-Tab> <Tab>
-set ruler
-set number
-set clipboard=unnamed
-set backspace=2
-set t_Co=256
-set nobackup
-set nowritebackup
-set noswapfile
 let mapleader=","
+map <C-Tab> <Tab>
+set backspace=2
+set clipboard=unnamed
+set hlsearch
 set laststatus=2
+set nobackup
+set noswapfile
+set nowritebackup
+set number
+set ruler
 set showcmd
-set foldlevelstart=0
+set tags=/home/andrea/vim/src/vimtags
+set tags+=/home/andrea/.vim/tags/st1
+set t_Co=256
+syntax enable
 " }}}
 " Key Mapping -------------------------------{{{
-nnoremap <c-m> :noh<CR>
-inoremap <c-d> <esc>ddi
-nnoremap <c-s> :w<CR>
-inoremap <c-s> <esc>:w<CR>a
-vnoremap <c-s> <esc>:w<CR>v
-inoremap <c-z> <esc>ui
-inoremap <c-x> <esc><c-r>i
-inoremap <c-u> <esc>viwUi
-nnoremap <c-u> viwU<esc>
-nnoremap cd :<C-U>execute "normal! Vy" . v:count1 . "p"<CR>
-inoremap <c-c> <esc>cdi
-nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
-inoremap jk <esc>
-inoremap <esc> <nop>
-onoremap p i(
-nnoremap <leader>ev :vsplit $MYVIMRC<cr>
-iabbrev return USAABBREVIAZIONE
 iabbrev rett return
-onoremap in( :<c-u>normal! f(vi(<cr
+iabbrev return USAABBREVIAZIONE
+inoremap <c-c> <esc>cdi
 "inoremap cc <esc>Vyp
+inoremap <c-d> <esc>ddi
+inoremap <c-s> <esc>:w<CR>a
+inoremap <c-u> <esc>viwUi
+inoremap <c-x> <esc><c-r>i
+inoremap <c-z> <esc>ui
+inoremap <esc> <nop>
+inoremap jk <esc>
 map <c-h> <c-w>h
 map <c-j> <c-w>j
 map <c-k> <c-w>k
 map <c-l> <c-w>l
 nmap <leader>m :tabn<CR>
 nmap <leader>n :tabp<CR>
+nnoremap cd :<C-U>execute "normal! Vy" . v:count1 . "p"<CR>
+nnoremap <c-m> :noh<CR>
+nnoremap <c-s> :w<CR>
+nnoremap <c-u> viwU<esc>
+nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
+onoremap in( :<c-u>normal! f(vi(<cr>
+vnoremap <c-s> <esc>:w<CR>v
 vnoremap < <gv
 vnoremap > >gv
 " vib per selezionare un blocco dentro le parentesi
@@ -122,6 +120,15 @@ function! Mozilla()
 	set tabstop=2 expandtab shiftwidth=2 softtabstop=2
 endfunction
 
+function! DetectMozilla()
+	let l:moz_path = '/home/andrea/firefox_builds/mozilla-central/'
+ 	let l:path = strpart(expand('%:p'), 0, strlen(l:moz_path))
+	if l:path ==# l:moz_path
+		call Mozilla()
+		echom "Mozilla file detected"
+	endif
+endfunction
+
 function! Python()
 	set tabstop=4 expandtab shiftwidth=4 softtabstop=4
 endfunction
@@ -130,5 +137,9 @@ endfunction
 augroup filetype_vim
 	autocmd!
 	autocmd FileType vim setlocal foldmethod=marker
+augroup END
+augroup filetype_mozilla
+ 	autocmd!
+	autocmd BufReadPre * :call DetectMozilla()
 augroup END
 " }}}
