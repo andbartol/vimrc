@@ -35,6 +35,16 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 " }}}
+" Autocmds -----------------------------{{{
+aug tutto
+	autocmd!
+	au InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+	au InsertLeave * match ExtraWhitespace /\s\+$/
+	autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
+	autocmd! bufwritepost .vimrc source %
+	autocmd FileType python :call Python()
+aug END
+" }}}
 " Settings --------------------------{{{
 " Per firefox il default non basta
 let g:CommandTMaxFiles = 301000
@@ -53,8 +63,6 @@ filetype on
 filetype plugin on
 filetype indent on
 syntax enable
-au InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-au InsertLeave * match ExtraWhitespace /\s\+$/
 colorscheme badwolf
 set hlsearch
 map <C-Tab> <Tab>
@@ -123,12 +131,4 @@ augroup filetype_vim
 	autocmd!
 	autocmd FileType vim setlocal foldmethod=marker
 augroup END
-" }}}
-" Autocmds -----------------------------{{{
-aug tutto
-	autocmd!
-	autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
-	autocmd! bufwritepost .vimrc source %
-	autocmd FileType python :call Python()
-aug END
 " }}}
