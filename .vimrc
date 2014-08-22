@@ -96,6 +96,8 @@ map <c-k> <c-w>k
 map <c-l> <c-w>l
 nmap <leader>m :tabn<CR>
 nmap <leader>n :tabp<CR>
+nnoremap . :
+nnoremap : .
 nnoremap cd :<C-U>execute "normal! Vy" . v:count1 . "p"<CR>
 nnoremap <c-m> :noh<CR>
 nnoremap <c-s> :w<CR>
@@ -117,7 +119,7 @@ endfor
 " }}}
 " Functions for tabulating --------------{{{
 function! Mozilla()
-	set tabstop=2 expandtab shiftwidth=2 softtabstop=2
+	setlocal tabstop=2 expandtab shiftwidth=2 softtabstop=2
 endfunction
 
 function! DetectMozilla()
@@ -130,7 +132,7 @@ function! DetectMozilla()
 endfunction
 
 function! Python()
-	set tabstop=4 expandtab shiftwidth=4 softtabstop=4
+	setlocal tabstop=4 expandtab shiftwidth=4 softtabstop=4
 endfunction
 " }}}
 " Vimscript folding -----------------------{{{
