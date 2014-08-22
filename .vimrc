@@ -89,13 +89,13 @@ inoremap <c-u> <esc>viwUi
 inoremap <c-x> <esc><c-r>i
 inoremap <c-z> <esc>ui
 inoremap <esc> <nop>
-inoremap jk <esc>
-map <c-h> <c-w>h
-map <c-j> <c-w>j
-map <c-k> <c-w>k
-map <c-l> <c-w>l
-nmap <leader>m :tabn<CR>
-nmap <leader>n :tabp<CR>
+inoremap jk <esc>l
+noremap <c-h> <c-w>h
+noremap <c-j> <c-w>j
+noremap <c-k> <c-w>k
+noremap <c-l> <c-w>l
+nnoremap <leader>m :tabn<CR>
+nnoremap <leader>n :tabp<CR>
 nnoremap . :
 nnoremap : .
 nnoremap cd :<C-U>execute "normal! Vy" . v:count1 . "p"<CR>
@@ -105,6 +105,8 @@ nnoremap <c-u> viwU<esc>
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
 onoremap in( :<c-u>normal! f(vi(<cr>
+onoremap in) :<c-u>normal! f(vi(<cr>
+nnoremap i) f)i
 vnoremap <c-s> <esc>:w<CR>v
 vnoremap < <gv
 vnoremap > >gv
