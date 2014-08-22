@@ -10,18 +10,21 @@
 " search in every file with '#include "' . g:var_file . ''
 
 function! GetLevel(lnum)
-	let l:level = 0
+	" Save current line
 	let l:position = getpos('.')
-	execute "normal! " . a:lnum . "gg<cr>"
-	while search('{', 'bW')
-		let l:level += 1
-	endwhile
-	execute "normal! " . a:lnum . "gg<cr>"
-	while search('}', 'bW')
-		let l:level -= 1
+	let l:level = 0
+	call cursor(a:lnum, 1)
+	while search('[{}]', 'bW')
+		if synIDattr(synID(line('.'), 1, 0), "name") !~? "comment"
+			if getline('.')[col('.')-1] == '{'
+				let l:level += 1
+			else
+				let l:level -= 1
+			endif
+		endif
 	endwhile
 	call cursor(l:position[1], l:position[2])
-	return l:level-1
+	return l:level
 endfunction
 
 function! SetCppStyle()
