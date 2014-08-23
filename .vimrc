@@ -79,8 +79,6 @@ set t_Co=256
 syntax enable
 " }}}
 " Key Mapping -------------------------------{{{
-iabbrev rett return
-iabbrev return USAABBREVIAZIONE
 inoremap <c-c> <esc>cdi
 "inoremap cc <esc>Vyp
 inoremap <c-d> <esc>ddi
@@ -106,7 +104,6 @@ nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
 onoremap in( :<c-u>normal! f(vi(<cr>
 onoremap in) :<c-u>normal! f(vi(<cr>
-nnoremap i) f)i
 vnoremap <c-s> <esc>:w<CR>v
 vnoremap < <gv
 vnoremap > >gv
