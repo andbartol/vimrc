@@ -104,6 +104,7 @@ nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
 onoremap in( :<c-u>normal! f(vi(<cr>
 onoremap in) :<c-u>normal! f(vi(<cr>
+onoremap i, :call SelectArgument()<cr>
 vnoremap <c-s> <esc>:w<CR>v
 vnoremap < <gv
 vnoremap > >gv
@@ -115,6 +116,18 @@ for prefix in ['i', 'n', 'v']
     exe prefix . "noremap " . key . " <Nop>"
   endfor
 endfor
+" }}}
+" Functions ----------------{{{
+function! SelectArgument()
+	call search("[,)]")
+	let l:curr_char = getline(".")[col(".")-1]
+	if l:curr_char == ')'
+		normal! h<cr>
+	endif
+	normal! v
+	call search("[,(]", "b")
+	normal! l
+endfunction
 " }}}
 " Functions for tabulating --------------{{{
 function! Mozilla()
