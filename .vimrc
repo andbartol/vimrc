@@ -76,6 +76,7 @@ set showcmd
 set tags=/home/andrea/vim/src/vimtags
 set tags+=/home/andrea/.vim/tags/st1
 set t_Co=256
+set wildmenu
 syntax enable
 " }}}
 " Key Mapping -------------------------------{{{
@@ -94,6 +95,11 @@ noremap <c-k> <c-w>k
 noremap <c-l> <c-w>l
 nnoremap <leader>m :tabn<CR>
 nnoremap <leader>n :tabp<CR>
+nnoremap \ /
+nnoremap <silent> k gk
+nnoremap <silent> j gj
+nnoremap N Nzz
+nnoremap n nzz
 nnoremap . :
 nnoremap : .
 nnoremap cd :<C-U>execute "normal! Vy" . v:count1 . "p"<CR>
