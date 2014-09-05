@@ -16,14 +16,15 @@ Plugin 'bling/vim-airline'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'majutsushi/tagbar'
 Plugin 'scrooloose/nerdtree'
-Plugin 'hsanson/vim-android'
-Plugin 'xolox/vim-easytags'
+"Plugin 'hsanson/vim-android'
+"Plugin 'xolox/vim-easytags'
 Plugin 'xolox/vim-misc'
 Plugin 'vim-scripts/AutoComplPop'
 Plugin 'garbas/vim-snipmate'
 Plugin 'honza/vim-snippets'
 Plugin 'marcweber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
+Plugin 'vim-scripts/Conque-Shell'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -89,9 +90,10 @@ inoremap <c-c> <esc>cdi
 inoremap <c-d> <esc>ddi
 inoremap <c-s> <esc>:w<CR>a
 inoremap <c-u> <esc>viwUi
-inoremap <c-x> <esc><c-r>i
+"inoremap <c-x> <esc><c-r>i
 inoremap <c-z> <esc>ui
 inoremap <esc> <nop>
+nmap <space> <leader>
 inoremap jk <esc>l
 noremap <c-h> <c-w>h
 noremap <c-j> <c-w>j
