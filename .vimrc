@@ -93,12 +93,13 @@ inoremap <c-u> <esc>viwUi
 "inoremap <c-x> <esc><c-r>i
 inoremap <c-z> <esc>ui
 inoremap <esc> <nop>
-nmap <space> <leader>
+map <space> <leader>
 inoremap jk <esc>l
 noremap <c-h> <c-w>h
 noremap <c-j> <c-w>j
 noremap <c-k> <c-w>k
 noremap <c-l> <c-w>l
+nnoremap <c-w>t :tabnew<CR>
 nnoremap <leader>m :tabn<CR>
 nnoremap <leader>n :tabp<CR>
 nnoremap \ /
