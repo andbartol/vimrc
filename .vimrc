@@ -24,7 +24,8 @@ Plugin 'garbas/vim-snipmate'
 Plugin 'honza/vim-snippets'
 Plugin 'marcweber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
-Plugin 'vim-scripts/Conque-Shell'
+"Plugin 'vim-scripts/Vim-JDE'
+"Plugin 'vim-scripts/Conque-Shell'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -110,11 +111,12 @@ nnoremap n nzz
 nnoremap . :
 nnoremap : .
 nnoremap cd :<C-U>execute "normal! Vy" . v:count1 . "p"<CR>
-nnoremap <c-m> :noh<CR>
+nnoremap <c-n> :noh<CR>
 nnoremap <c-s> :w<CR>
 nnoremap <c-u> viwU<esc>
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
+nnoremap <leader>p :b#<cr>
 onoremap in( :<c-u>normal! f(vi(<cr>
 onoremap in) :<c-u>normal! f(vi(<cr>
 onoremap i, :call SelectArgument()<cr>
