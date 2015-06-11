@@ -1,6 +1,7 @@
 " Vundle settings ----------------------------{{{
 set nocompatible              " be iMproved, required
 filetype off                  " required
+let g:glowshi_ft_no_default_key_mappings = "1"
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -10,8 +11,6 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
-"Plugin 'Valloric/YouCompleteMe'
-Plugin 'wincent/Command-T'
 Plugin 'bling/vim-airline'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'majutsushi/tagbar'
@@ -19,13 +18,34 @@ Plugin 'scrooloose/nerdtree'
 "Plugin 'hsanson/vim-android'
 "Plugin 'xolox/vim-easytags'
 Plugin 'xolox/vim-misc'
-Plugin 'vim-scripts/AutoComplPop'
+"Plugin 'vim-scripts/AutoComplPop'
 Plugin 'garbas/vim-snipmate'
 Plugin 'honza/vim-snippets'
 Plugin 'marcweber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
+Plugin 'terryma/vim-expand-region'
+"Plugin 'bkad/CamelCaseMotion'
+Plugin 'EinfachToll/DidYouMean'
+Plugin 'haya14busa/incsearch.vim'
+Plugin 'takac/vim-hardtime'
+Plugin 'jpalardy/vim-slime'
 "Plugin 'vim-scripts/Vim-JDE'
-"Plugin 'vim-scripts/Conque-Shell'
+Plugin 'vim-scripts/Conque-Shell'
+Plugin 'anddam/android-javacomplete'
+Plugin 'kenyth/DfrankUtil'
+Plugin 'vim-scripts/vimprj'
+Plugin 'NLKNguyen/papercolor-theme'
+Plugin 'kien/ctrlp.vim'
+Plugin 'vim-scripts/taglist.vim'
+Plugin 'vim-scripts/indexer.tar.gz'
+Plugin 'vim-scripts/javacomplete'
+Plugin 'altercation/vim-colors-solarized'
+
+Plugin 'tpope/vim-fugitive'
+Plugin 'edsono/vim-matchit'
+Plugin 'scrooloose/syntastic'
+Plugin 'ervandew/supertab'
+Plugin 'rstacruz/sparkup'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -49,26 +69,38 @@ aug tutto
 	autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
 	autocmd! bufwritepost .vimrc source %
 	autocmd FileType python :call Python()
+	autocmd FileType java setlocal omnifunc=javacomplete#Complete
+	autocmd FileType java setlocal completefunc=javacomplete#CompleteParamsInfo
 aug END
 " }}}
 " Settings --------------------------{{{
-" Per firefox il default non basta
-let g:CommandTMaxFiles = 301000
-let g:CommandTMaxHeight = 30
-" E' più veloce
-let g:CommandTFileScanner = 'find'
-let g:CommandTCancelMap = ['<ESC>','<C-c>']
 let g:miniBufExplMapCTabSwitchBufs = 1
 let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 let g:android_sdk_path = '~/android-studio/sdk/'
+let g:airline#extensions#tabline#enabled = 1
+
+let $CLASSPATH = '/home/andrea/Android/Sdk/platforms/android-22/android.jar'
+
+let Tlist_GainFocus_On_ToggleOpen = 1
+let Tlist_Exit_OnlyWindow = 1
+let Tlist_Process_File_Always = 1
+
+let NERDTreeWinPos = 'right'
+"let g:airline_theme = 'light'
 "let g:android_sdk_tags = '~/android-studio/sdk/tags/tags'
 "set tags=/home/andrea/.vim/tags/tags
-colorscheme badwolf
+"colorscheme autumn
+"colorscheme badwolf
+set t_Co=256
+"let g:solarized_termcolors=256
+set background=dark
+colorscheme solarized
 filetype indent on
 filetype on
 filetype plugin on
 let mapleader=","
 map <C-Tab> <Tab>
+set omnifunc=syntaxcomplete#Complete
 set backspace=2
 set clipboard=unnamed
 set hlsearch
@@ -79,15 +111,28 @@ set nowritebackup
 set number
 set ruler
 set showcmd
-set tags=/home/andrea/vim/src/vimtags
-set tags+=/home/andrea/.vim/tags/st1
-set t_Co=256
+set tags=/home/andrea/.vim/tags/st1
+set tags+=tags
 set wildmenu
+set hidden
+set cursorline
+hi cursorline cterm=none term=none
+autocmd WinEnter * setlocal cursorline
+autocmd WinLeave * setlocal nocursorline
+highlight CursorLine guibg=#303000 ctermbg=234
+" highlight
+let g:glowshi_ft_selected_hl_link = 'Cursor'
+let g:glowshi_ft_candidates_hl_link = 'Error'
+" timeout
+let g:glowshi_ft_timeoutlen = 2000
+let g:airline#extensions#branch#enabled = 1
 syntax enable
 " }}}
 " Key Mapping -------------------------------{{{
-inoremap <c-c> <esc>cdi
 "inoremap cc <esc>Vyp
+nnoremap <leader>t :TlistToggle<cr>
+nnoremap <c-c> <c-w><c-w><c-f><c-w><c-w>
+nnoremap <cr><cr> o<esc>
 inoremap <c-d> <esc>ddi
 inoremap <c-s> <esc>:w<CR>a
 inoremap <c-u> <esc>viwUi
@@ -95,34 +140,50 @@ inoremap <c-u> <esc>viwUi
 inoremap <c-z> <esc>ui
 inoremap <esc> <nop>
 map <space> <leader>
-inoremap jk <esc>l
+inoremap jk <esc>
 noremap <c-h> <c-w>h
 noremap <c-j> <c-w>j
 noremap <c-k> <c-w>k
 noremap <c-l> <c-w>l
 nnoremap <c-w>t :tabnew<CR>
-nnoremap <leader>m :tabn<CR>
-nnoremap <leader>n :tabp<CR>
+nnoremap <leader>n :NERDTreeToggle<CR>
+nnoremap <leader>v V
+nnoremap <leader>b :<c-u>execute "b" . v:count1<cr>
 nnoremap \ /
+nnoremap <leader>q :q<CR>
 nnoremap <silent> k gk
 nnoremap <silent> j gj
+nnoremap <leader>j :<c-u>execute "normal! " . v:count1*10 . "j"<cr>
+nnoremap <leader>k :<c-u>execute "normal! " . v:count1*10 . "k"<cr>
 nnoremap N Nzz
 nnoremap n nzz
 nnoremap . :
 nnoremap : .
 nnoremap cd :<C-U>execute "normal! Vy" . v:count1 . "p"<CR>
 nnoremap <c-n> :noh<CR>
+nnoremap <leader>w :w<cr>
 nnoremap <c-s> :w<CR>
 nnoremap <c-u> viwU<esc>
-nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+nnoremap <leader>ev :split $MYVIMRC<cr>
 nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
 nnoremap <leader>p :b#<cr>
+nnoremap <leader><leader>p :bn<cr>
+nnoremap <c-p> u.
 onoremap in( :<c-u>normal! f(vi(<cr>
 onoremap in) :<c-u>normal! f(vi(<cr>
 onoremap i, :call SelectArgument()<cr>
 vnoremap <c-s> <esc>:w<CR>v
 vnoremap < <gv
 vnoremap > >gv
+map /  <Plug>(incsearch-forward)
+map ?  <Plug>(incsearch-backward)
+map g/ <Plug>(incsearch-stay)
+nnoremap <leader>d :bd<cr>
+vmap v <Plug>(expand_region_expand)
+vmap <C-v> <Plug>(expand_region_shrink)
+" Move visual block
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
 " vib per selezionare un blocco dentro le parentesi
 " vi" o vi' per scrivere dentro le virgolette più vicine
 " Unbind the cursor keys in insert, normal and visual modes.
@@ -161,6 +222,11 @@ endfunction
 function! Python()
 	setlocal tabstop=4 expandtab shiftwidth=4 softtabstop=4
 endfunction
+
+function! ForceSave()
+	w !sudo tee > /dev/null %
+endfunction
+command! ForceSave call ForceSave()
 " }}}
 " Vimscript folding -----------------------{{{
 augroup filetype_vim
