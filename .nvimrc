@@ -130,6 +130,7 @@ syntax enable
 " }}}
 " Key Mapping -------------------------------{{{
 "inoremap cc <esc>Vyp
+nnoremap <leader>r :!firefox %<cr>
 nnoremap <leader>t :TlistToggle<cr>
 nnoremap <c-c> <c-w><c-w><c-f><c-w><c-w>
 nnoremap <cr><cr> o<esc>
