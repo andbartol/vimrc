@@ -41,12 +41,13 @@ Plugin 'vim-scripts/indexer.tar.gz'
 Plugin 'vim-scripts/javacomplete'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'whatyouhide/vim-gotham'
-
 Plugin 'tpope/vim-fugitive'
+
 Plugin 'edsono/vim-matchit'
 Plugin 'scrooloose/syntastic'
 Plugin 'rstacruz/sparkup'
 Plugin 'PotatoesMaster/i3-vim-syntax'
+Plugin 'derekwyatt/vim-scala'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
