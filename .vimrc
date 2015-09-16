@@ -18,7 +18,7 @@ Plugin 'scrooloose/nerdtree'
 "Plugin 'hsanson/vim-android'
 "Plugin 'xolox/vim-easytags'
 Plugin 'xolox/vim-misc'
-"Plugin 'vim-scripts/AutoComplPop'
+Plugin 'vim-scripts/AutoComplPop'
 Plugin 'garbas/vim-snipmate'
 Plugin 'honza/vim-snippets'
 Plugin 'marcweber/vim-addon-mw-utils'
@@ -40,12 +40,13 @@ Plugin 'vim-scripts/taglist.vim'
 Plugin 'vim-scripts/indexer.tar.gz'
 Plugin 'vim-scripts/javacomplete'
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'whatyouhide/vim-gotham'
 
 Plugin 'tpope/vim-fugitive'
 Plugin 'edsono/vim-matchit'
 Plugin 'scrooloose/syntastic'
-Plugin 'ervandew/supertab'
 Plugin 'rstacruz/sparkup'
+Plugin 'PotatoesMaster/i3-vim-syntax'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -92,6 +93,7 @@ let NERDTreeWinPos = 'right'
 "colorscheme autumn
 "colorscheme badwolf
 set t_Co=256
+set guioptions=aPcg
 "let g:solarized_termcolors=256
 set background=dark
 colorscheme solarized
@@ -130,13 +132,11 @@ syntax enable
 " }}}
 " Key Mapping -------------------------------{{{
 "inoremap cc <esc>Vyp
-nnoremap <leader>r :!firefox %<cr>
 nnoremap <leader>t :TlistToggle<cr>
 nnoremap <c-c> <c-w><c-w><c-f><c-w><c-w>
 nnoremap <cr><cr> o<esc>
 inoremap <c-d> <esc>ddi
 inoremap <c-s> <esc>:w<CR>a
-inoremap <c-u> <esc>viwUi
 "inoremap <c-x> <esc><c-r>i
 inoremap <c-z> <esc>ui
 inoremap <esc> <nop>
@@ -164,7 +164,6 @@ nnoremap cd :<C-U>execute "normal! Vy" . v:count1 . "p"<CR>
 nnoremap <c-n> :noh<CR>
 nnoremap <leader>w :w<cr>
 nnoremap <c-s> :w<CR>
-nnoremap <c-u> viwU<esc>
 nnoremap <leader>ev :split $MYVIMRC<cr>
 nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
 nnoremap <leader>p :b#<cr>
@@ -176,6 +175,7 @@ onoremap i, :call SelectArgument()<cr>
 vnoremap <c-s> <esc>:w<CR>v
 vnoremap < <gv
 vnoremap > >gv
+vnoremap <leader>q :normal @q<cr>
 map /  <Plug>(incsearch-forward)
 map ?  <Plug>(incsearch-backward)
 map g/ <Plug>(incsearch-stay)
