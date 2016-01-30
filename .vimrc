@@ -42,6 +42,7 @@ Plugin 'vim-scripts/javacomplete'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'whatyouhide/vim-gotham'
 Plugin 'tpope/vim-fugitive'
+Plugin 'osyo-manga/vim-over'
 
 Plugin 'edsono/vim-matchit'
 Plugin 'scrooloose/syntastic'
@@ -137,7 +138,6 @@ nnoremap <leader>t :TlistToggle<cr>
 nnoremap <c-c> <c-w><c-w><c-f><c-w><c-w>
 nnoremap <cr><cr> o<esc>
 inoremap <c-d> <esc>ddi
-inoremap <c-s> <esc>:w<CR>a
 "inoremap <c-x> <esc><c-r>i
 inoremap <c-z> <esc>ui
 inoremap <esc> <nop>
@@ -164,19 +164,19 @@ nnoremap : .
 nnoremap cd :<C-U>execute "normal! Vy" . v:count1 . "p"<CR>
 nnoremap <c-n> :noh<CR>
 nnoremap <leader>w :w<cr>
-nnoremap <c-s> :w<CR>
 nnoremap <leader>ev :split $MYVIMRC<cr>
 nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
 nnoremap <leader>p :b#<cr>
 nnoremap <leader><leader>p :bn<cr>
-nnoremap <c-p> u.
+nnoremap <c-m> u.
+nnoremap <c-s> :OverCommandLine<cr>
 onoremap in( :<c-u>normal! f(vi(<cr>
 onoremap in) :<c-u>normal! f(vi(<cr>
 onoremap i, :call SelectArgument()<cr>
-vnoremap <c-s> <esc>:w<CR>v
 vnoremap < <gv
 vnoremap > >gv
 vnoremap <leader>q :normal @q<cr>
+vnoremap <c-s> :OverCommandLine<cr>s/
 map /  <Plug>(incsearch-forward)
 map ?  <Plug>(incsearch-backward)
 map g/ <Plug>(incsearch-stay)
